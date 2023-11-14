@@ -11,43 +11,45 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.demo.dto.Suministra;
-import com.example.demo.service.ISuministraService;
+
+import com.example.demo.dto.Proyecto;
+import com.example.demo.service.IProyectoService;
 
 @RestController
-@RequestMapping("/suministra")
-public class SuminsitraController {
+@RequestMapping("/proyecto")
+public class ProyectoController {
 
 	@Autowired
-	private ISuministraService iServ;
+	private IProyectoService proyectoService;
 	
 	@GetMapping("/list")
-	public List<Suministra> allSuministra(){
+	public List<Proyecto> getProyectos(){
 		
-		return iServ.listSuministra();
+		return proyectoService.listProyecto();
 	}
 	
 	@GetMapping("/{id}")
-	public Suministra sumPorId(@PathVariable int id) {
+	public Proyecto proyectoPorCod(@PathVariable String id) {
 		
-		return iServ.sumPorId(id);
+		return proyectoService.proyectoPorCodigo(id);
 	}
 	
 	@PostMapping("/add")
-	public Suministra saveSum(@RequestBody Suministra suministra) {
-		
-		return iServ.saveSuministra(suministra);
+	public Proyecto insertProyecto(@RequestBody Proyecto proyecto) {
+	
+		return proyectoService.saveProyecto(proyecto);
 	}
 	
 	@PutMapping("/{id}")
-	public Suministra updateSum(@PathVariable int id, @RequestBody Suministra suministra) {
+	public Proyecto updateProyecto(@PathVariable(name = "id") String id, 
+			@RequestBody Proyecto proyecto) {
 		
-		return iServ.updateSuministra(suministra);
+		return proyectoService.updateProyecto(proyecto);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteSum(@PathVariable int id) {
+	public void deleteProyecto(@PathVariable String id) {
 		
-		iServ.deleteSuministra(id);
+		proyectoService.deleteProyecto(id);
 	}
 }

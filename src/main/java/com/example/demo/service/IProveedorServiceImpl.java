@@ -3,48 +3,45 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dao.ProveedorDAO;
-import com.example.demo.dto.Proveedor;
-
+import com.example.demo.dao.ProyectoDAO;
+import com.example.demo.dto.Proyecto;
 
 @Service
-public class IProveedorServiceImpl implements IProveedorService{
+public class IProveedorServiceImpl implements IProyectoService{
 
 	@Autowired
-	ProveedorDAO iProvServ;
+	private ProyectoDAO proveedorDAO;
 	
 	@Override
-	public List<Proveedor> listProv() {
+	public List<Proyecto> listProyecto() {
 		// TODO Auto-generated method stub
-		return iProvServ.findAll();
+		return proveedorDAO.findAll();
 	}
 
 	@Override
-	public Proveedor proveedorPorCod(String id) {
+	public Proyecto saveProyecto(Proyecto proyecto) {
 		// TODO Auto-generated method stub
-		return iProvServ.findById(id).get();
+		return proveedorDAO.save(proyecto);
 	}
 
 	@Override
-	public Proveedor saveProveedor(Proveedor prov) {
+	public Proyecto proyectoPorCodigo(String id) {
 		// TODO Auto-generated method stub
-		return iProvServ.save(prov);
+		return proveedorDAO.findById(id).get();
 	}
 
 	@Override
-	public Proveedor updateProveedor(Proveedor prov) {
+	public Proyecto updateProyecto(Proyecto proyecto) {
 		// TODO Auto-generated method stub
-		return iProvServ.save(prov);
+		return proveedorDAO.save(proyecto);
 	}
 
 	@Override
-	public void deleteProveedor(String id) {
+	public void deleteProyecto(String id) {
 		// TODO Auto-generated method stub
-		iProvServ.deleteById(id);
+		proveedorDAO.deleteById(id);
 	}
 
-	
 }
